@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Debug') {
-            steps {
-                sh 'whoami'
-            }
-        }
-
-        
         // Stage 1 : Update / Install Packages 
         stage('Install Packages') {
             steps {
@@ -42,7 +35,7 @@ pipeline {
         stage('Run Application') {
             steps { 
                 sh '''
-                sudo python3 netman_netconf_obj2.py
+                python3 netman_netconf_obj2.py
                 '''
             }
         }
