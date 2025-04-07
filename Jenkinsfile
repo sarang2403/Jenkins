@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/2 * * * *')
-    }
-
     stages {
         
         // Stage 1 : Update / Install Packages 
@@ -49,18 +45,18 @@ pipeline {
         success {
             script {
                 emailext(
-                    subject: "Build Success!"
-                    body: ${env.JOB_NAME} build ${env.BUILD_NUMBER} successful.
-                    to: sarang.kalantre@colorado.edu 
+                    subject: "Build Success!", 
+                    body: "${env.JOB_NAME} build ${env.BUILD_NUMBER} successful",
+                    to: "sarang.kalantre@colorado.edu" 
                 )
             }
         }
         failure {
             script {
                 emailext(
-                    subject: "Build Failure!"
-                    body: ${env.JOB_NAME} build ${env.BUILD_NUMBER} failed.
-                    to: sarang.kalantre@colorado.edu 
+                    subject: "Build Failure!",
+                    body: "${env.JOB_NAME} build ${env.BUILD_NUMBER} failed.",
+                    to: "sarang.kalantre@colorado.edu"
                 )
             }
         }
