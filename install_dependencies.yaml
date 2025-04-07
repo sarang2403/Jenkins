@@ -3,6 +3,8 @@
   hosts : localhost 
   connection : local
   become : yes 
+  vars:
+    ansible_become_password : jenkins123
   tasks :
     - name : Install Packages 
       pip : 
