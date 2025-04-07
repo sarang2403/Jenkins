@@ -1,0 +1,17 @@
+---
+- name : Update / Install Packages 
+  hosts : localhost 
+  connection : local
+  become : yes 
+  tasks :
+    - name : Install Packages 
+      pip : 
+        name : 
+          - ncclient 
+          - pandas
+          - ipaddress
+          - netaddr 
+          - prettytable
+          - pylint
+        state : present 
+        executable : pip3 
