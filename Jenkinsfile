@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Debug') {
+            steps {
+                sh 'ls -la'
+                sh 'cat install_dependencies.yaml'
+            }
+        }
+
         
         // Stage 1 : Update / Install Packages 
         stage('Install Packages') {
@@ -9,6 +17,7 @@ pipeline {
                 ansiblePlaybook(
                     playbook: 'install_dependencies.yaml',
                     inventory: 'localhost', 
+                    extras: '--connection=local'
                 )
             }
         }
@@ -40,6 +49,7 @@ pipeline {
         }
 
     }
+
 
     post {
         success {
