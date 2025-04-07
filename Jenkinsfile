@@ -5,8 +5,7 @@ pipeline {
 
         stage('Debug') {
             steps {
-                sh 'ls -la'
-                sh 'cat install_dependencies.yaml'
+                sh 'whoami'
             }
         }
 
