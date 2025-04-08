@@ -17,25 +17,27 @@ pipeline {
         // Stage 2 : Check Code Quality 
         stage('Check Code Quality') {
             steps {
-                script {
-                    try {
                         sh '''
                         pylint netman_netconf_obj2.py --fail-under=5
                         '''
                     }
-                    catch (Exception e){
-                        echo 'Pylint Violation! Please fix code.'
-                        error('Codestyle Violation')
-                    }
-                }
-            }
         }
+    
 
         // Stage 3 : Run Code
         stage('Run Application') {
             steps { 
                 sh '''
                 python3 netman_netconf_obj2.py
+                '''
+            }
+        }
+
+        // Stage 4 : Run Unit Test
+        stage('Run Unit Tests') {
+            steps { 
+                sh '''
+                python3 netman_test.py
                 '''
             }
         }
